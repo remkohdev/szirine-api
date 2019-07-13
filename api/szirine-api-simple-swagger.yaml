@@ -1,0 +1,175 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: szirine-api
+basePath: /api
+paths:
+  /Posts:
+    post:
+      tags:
+        - Post
+      summary: Create a new instance of the model and persist it into the data source.
+      operationId: Post.create
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Post'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Post'
+      deprecated: false
+    put:
+      tags:
+        - Post
+      summary: >-
+        Replace an existing model instance or insert a new one into the data
+        source.
+      operationId: Post.replaceOrCreate__put_Posts
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Post'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Post'
+      deprecated: false
+    get:
+      tags:
+        - Post
+      summary: Find all instances of the model matched by filter from the data source.
+      operationId: Post.find
+      parameters:
+        - name: filter
+          in: query
+          description: >-
+            Filter defining fields, where, include, order, offset, and limit -
+            must be a JSON-encoded string (`{"where":{"something":"value"}}`). 
+            See
+            https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+            for more details.
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Post'
+      deprecated: false
+  '/Posts/{id}':
+    get:
+      tags:
+        - Post
+      summary: 'Find a model instance by {{id}} from the data source.'
+      operationId: Post.findById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: filter
+          in: query
+          description: >-
+            Filter defining fields and include - must be a JSON-encoded string
+            ({"something":"value"})
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Post'
+      deprecated: false
+    put:
+      tags:
+        - Post
+      summary: >-
+        Replace attributes for a model instance and persist it into the data
+        source.
+      operationId: 'Post.replaceById__put_Posts_{id}'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Post'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Post'
+      deprecated: false
+    delete:
+      tags:
+        - Post
+      summary: 'Delete a model instance by {{id}} from the data source.'
+      operationId: Post.deleteById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+tags:
+  - name: Post
+consumes:
+  - application/json
+produces:
+  - application/json
+definitions:
+  Post:
+    properties:
+      id:
+        type: number
+        format: double
+      title:
+        type: string
+      subtitle:
+        type: string
+      publicationDate:
+        type: string
+        format: date-time
+      thumbnail:
+        type: string
+      text:
+        type: string
+      userId:
+        type: number
+        format: double
+    required:
+      - title
+      - publicationDate
+      - text
+    additionalProperties: false
