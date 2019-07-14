@@ -30,7 +30,7 @@ paths:
       summary: >-
         Replace an existing model instance or insert a new one into the data
         source.
-      operationId: Post.replaceOrCreate__put_Posts
+      operationId: Post.update
       parameters:
         - name: data
           in: body
@@ -103,7 +103,7 @@ paths:
       summary: >-
         Replace attributes for a model instance and persist it into the data
         source.
-      operationId: 'Post.replaceById__put_Posts_{id}'
+      operationId: 'Post.updateById'
       parameters:
         - name: id
           in: path
