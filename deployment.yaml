@@ -1,0 +1,23 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata: 
+  name: szirine-api-deployment
+  labels: 
+    app: szirine-api
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: szirine-api
+  template: 
+    metadata: 
+      labels:
+        app: szirine-api
+    spec: 
+      containers:
+      - name: szirine-api
+        image: us.icr.io/ws-1-ns/szirine-api:latest
+        ports:
+        - name: main
+          protocol: TCP
+          containerPort: 3000
